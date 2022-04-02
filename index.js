@@ -79,10 +79,12 @@ function arr(array1, array2) {
   )
     return undefined;
   if (array1.length === array2.length) {
-    array1.sort();
-    array2.sort();
-    for (i = 0; i < array1.length; i++) {
-      if (!any(array1[i], array2[i])) return false;
+    const sortedArray1 = [...array1];
+    const sortedArray2 = [...array2];
+    sortedArray1.sort();
+    sortedArray2.sort();
+    for (i = 0; i < sortedArray1.length; i++) {
+      if (!any(sortedArray1[i], sortedArray2[i])) return false;
     }
     return true;
   }

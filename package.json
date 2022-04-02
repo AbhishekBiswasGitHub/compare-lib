@@ -1,17 +1,25 @@
 {
   "name": "compare-lib",
   "version": "1.2.0",
-  "description": "compare any two variable",
+  "description": "\"Javascript library for comparing (by containing data) any two variable.\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbhishekBiswasGitHub/compare-lib.git"
+  },
   "keywords": [
     "compare",
-    "object-compare",
-    "array-compare",
-    "function-compare"
+    "compare-function",
+    "compare-object",
+    "compare-array"
   ],
   "author": "Abhishek Biswas",
-  "license": "ISC"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AbhishekBiswasGitHub/compare-lib/issues"
+  },
+  "homepage": "https://github.com/AbhishekBiswasGitHub/compare-lib#readme"
 }
