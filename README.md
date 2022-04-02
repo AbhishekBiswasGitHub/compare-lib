@@ -20,7 +20,7 @@ compare.any(item1, item2);
 /* For function, returns "true" if equal,
                          "false" if not equal,
                          "undefined" if not function */
-compare.fnc(item1, item2);
+compare.fnc(function1, function2);
 
 /* For object, returns "true" if equal,
                        "false" if not equal,
