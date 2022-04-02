@@ -1,0 +1,17 @@
+{
+  "name": "compare-lib",
+  "version": "1.0.0",
+  "description": "compare any two variable",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "compare",
+    "object-compare",
+    "array-compare",
+    "function-compare"
+  ],
+  "author": "Abhishek Biswas",
+  "license": "ISC"
+}
