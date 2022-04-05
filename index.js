@@ -10,15 +10,14 @@ function any(item1, item2) {
       // For type "object" (object, array, null)
       if (item1) {
         // Not "null"
-        if (item1.length === undefined) {
+        if (!Array.isArray(item1)) {
           // For "object"
           if (!obj(item1, item2)) return false;
           return true;
-        } else {
-          // For "array"
-          if (!arr(item1, item2)) return false;
-          return true;
         }
+        // For "array"
+        if (!arr(item1, item2)) return false;
+        return true;
       } else {
         // For "null"
         if (typeof item2 === "object" && !item2) return true;
@@ -69,15 +68,7 @@ function obj(object1, object2) {
 
 // For "array"
 function arr(array1, array2) {
-  if (
-    !array1 ||
-    !array2 ||
-    typeof array1 !== "object" ||
-    typeof array2 !== "object" ||
-    array1.length === undefined ||
-    array2.length === undefined
-  )
-    return undefined;
+  if (!Array.isArray(array1) || !Array.isArray(array2)) return undefined;
 
   if (array1.length !== array2.length) return false;
 
@@ -121,7 +112,7 @@ function separateArray(input) {
   return [rest, objcets];
 }
 
-// For comparing the array without objects
+// For comparing the array without object
 function restArray(array1, array2) {
   if (array1.length === array2.length) {
     for (let i = 0; i < array1.length; i++) {
@@ -132,7 +123,7 @@ function restArray(array1, array2) {
   return false;
 }
 
-// For comparing the array with objects
+// For comparing the array with object
 function objectArray(arr1, arr2) {
   if (arr1.length !== arr2.length) return false;
 
