@@ -1,6 +1,6 @@
 # compare-lib
 
-"compare-lib" is a Javascript library for comparing (by containing data) any two variable.
+"compare-lib" is a Javascript library for comparing (by containing data) any two variable (without any order or sorting).
 
 ## Installation
 

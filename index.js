@@ -40,7 +40,7 @@ function any(item1, item2) {
   }
 }
 
-//For "function"
+// For "function"
 function fnc(function1, function2) {
   if (typeof function1 !== "function" || typeof function2 !== "function")
     return undefined;
@@ -48,7 +48,7 @@ function fnc(function1, function2) {
   return true;
 }
 
-//For "object"
+// For "object"
 function obj(object1, object2) {
   if (
     !object1 ||
@@ -60,14 +60,14 @@ function obj(object1, object2) {
   )
     return undefined;
   if (Object.keys(object1).length === Object.keys(object2).length) {
-    for (key in object1) {
+    for (let key in object1) {
       if (!any(object1[key], object2[key])) return false;
     }
     return true;
   }
 }
 
-//For "array"
+// For "array"
 function arr(array1, array2) {
   if (
     !array1 ||
@@ -78,16 +78,76 @@ function arr(array1, array2) {
     array2.length === undefined
   )
     return undefined;
+
+  if (array1.length !== array2.length) return false;
+
+  const arrays1 = separateArray(array1);
+  const arrays2 = separateArray(array2);
+
+  if (
+    arrays1[0].length !== arrays2[0].length ||
+    arrays1[1].length !== arrays2[1].length
+  )
+    return false;
+  if (!arrays1[1].length) if (restArray(arrays1[0], arrays2[0])) return true;
+  if (restArray(arrays1[0], arrays2[0]) && objectArray(arrays1[1], arrays2[1]))
+    return true;
+  return false;
+}
+
+// For separating objects from rest
+function separateArray(input) {
+  const rest = [...input];
+  const objcets = [];
+
+  for (let i = rest.length - 1; i >= 0; i--) {
+    if (typeof rest[i] === "object" && rest[i]) {
+      const object = rest.splice(i, 1)[0];
+      let addObject = true;
+
+      for (let j = 0; j < objcets.length; j += 2) {
+        if (any(object, objcets[j])) {
+          objcets[j + 1] += 1;
+          addObject = false;
+          break;
+        }
+      }
+      if (addObject) objcets.push(object, 1);
+    }
+  }
+
+  rest.sort();
+
+  return [rest, objcets];
+}
+
+// For comparing the array without objects
+function restArray(array1, array2) {
   if (array1.length === array2.length) {
-    const sortedArray1 = [...array1];
-    const sortedArray2 = [...array2];
-    sortedArray1.sort();
-    sortedArray2.sort();
-    for (i = 0; i < sortedArray1.length; i++) {
-      if (!any(sortedArray1[i], sortedArray2[i])) return false;
+    for (let i = 0; i < array1.length; i++) {
+      if (!any(array1[i], array2[i])) return false;
     }
     return true;
   }
+  return false;
+}
+
+// For comparing the array with objects
+function objectArray(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+
+  for (let i = 0; i < arr1.length; i += 2) {
+    let isEqual = false;
+    for (let j = 0; j < arr2.length; j += 2) {
+      if (any(arr1[i], arr2[j]) && arr1[i + 1] === arr2[j + 1]) {
+        isEqual = true;
+        break;
+      }
+    }
+    if (!isEqual) return false;
+  }
+
+  return true;
 }
 
 //For "rest"

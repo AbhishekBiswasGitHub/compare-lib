@@ -1,7 +1,7 @@
 {
   "name": "compare-lib",
   "version": "1.2.1",
-  "description": "\"Javascript library for comparing (by containing data) any two variable.\"",
+  "description": "\"Javascript library for comparing (by containing data) any two variable (without any order or sorting).\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,7 @@
     "compare-array"
   ],
   "author": "Abhishek Biswas",
-  "license": "MIT",
+  "license": "GPLv3",
   "bugs": {
     "url": "https://github.com/AbhishekBiswasGitHub/compare-lib/issues"
   },
